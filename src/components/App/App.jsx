@@ -1,34 +1,44 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-// import { nanoid } from 'nanoid';
-import {Section, Container} from './App.styled';
-import SearchingApiServices from '../../services/pixabayApi';
+import { Section, Container } from './App.styled';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Component } from 'react';
-const searchingApiServices = new SearchingApiServices();
-// console.log("SearchingApiServices:", searchingApiServices.fetchPhotoCards());
+import ImageGallery from 'components/ImageGallery/ImageGallery';
+import Searchbar from 'components/Searchbar/Searchbar';
 
 export class App extends Component {
   state = {
-galleryItems: null,
+    itemTag: [],
+  
   };
 
-componentDidMount() {
-    searchingApiServices.fetchPhotoCards().then(({data:{hits}}) => this.setState({galleryItems:hits}))
-
-  }
-
-  // componentDidUpdate(prevProps, prevState) {
-   
-  // }
-
-
+  handleSearchSubmit = itemTag => {
+    this.setState({ itemTag });
+  };
+  
   render() {
-   
     return (
       <>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+        <Searchbar onSubmit={this.handleSearchSubmit} />
         <Section>
           <Container>
-            {this.state.galleryItems && <p>There are photos</p>}
+            {this.state.loading && <h1>Downloading</h1>}
+            {this.state.itemTag && (
+              <ImageGallery itemTag={this.state.itemTag} />
+            )}
           </Container>
         </Section>
       </>

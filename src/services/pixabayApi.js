@@ -11,14 +11,14 @@ const searchParams = new URLSearchParams({
 
 export default class SearchingApiServices {
   constructor() {
-    this.searchQuery = '';
+    // this.searchQuery = '';
     this.page = 1;
   }
 
-  async fetchPhotoCards() {
+  async fetchPhotoCards(searchQuery) {
     const data = await axios({
       method: 'get',
-      url: `${BASE_URL}?${searchParams}&q=${this.searchQuery}&page=${this.page}`,
+      url: `${BASE_URL}?${searchParams}&q=${searchQuery}&page=${this.page}`,
     }).catch(function (error) {
       if (error.response) {
         console.log(error.response.status);
@@ -29,22 +29,63 @@ export default class SearchingApiServices {
       }
       console.log(error.config);
     });
-    this.incrementPage();
+    // this.incrementPage();
     return data;
   }
 
-  incrementPage() {
-    this.page += 1;
-  }
-  resetPage() {
-    this.page = 1;
-  }
+  // incrementPage() {
+  //   this.page += 1;
+  // }
+  // resetPage() {
+  //   this.page = 1;
+  // }
 
-  get query() {
-    return this.searchQuery;
-  }
+  // get query() {
+  //   return this.searchQuery;
+  // }
 
-  set query(newQuery) {
-    this.searchQuery = newQuery;
-  }
+  // set query(newQuery) {
+  //   this.searchQuery = newQuery;
+  // }
 }
+
+
+// export default class SearchingApiServices {
+//   constructor() {
+//     this.searchQuery = '';
+//     this.page = 1;
+//   }
+
+//   async fetchPhotoCards() {
+//     const data = await axios({
+//       method: 'get',
+//       url: `${BASE_URL}?${searchParams}&q=${this.searchQuery}&page=${this.page}`,
+//     }).catch(function (error) {
+//       if (error.response) {
+//         console.log(error.response.status);
+//       } else if (error.request) {
+//         console.log(error.request);
+//       } else {
+//         console.log('Error', error.message);
+//       }
+//       console.log(error.config);
+//     });
+//     this.incrementPage();
+//     return data;
+//   }
+
+//   incrementPage() {
+//     this.page += 1;
+//   }
+//   resetPage() {
+//     this.page = 1;
+//   }
+
+//   get query() {
+//     return this.searchQuery;
+//   }
+
+//   set query(newQuery) {
+//     this.searchQuery = newQuery;
+//   }
+// }
