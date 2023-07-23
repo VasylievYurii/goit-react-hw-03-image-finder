@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-// import { nanoid } from 'nanoid';
 import { ImageGalleryList } from './ImageGallery.styled';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import { Loader } from 'components/Loader/Loader';
+import Modal from 'components/Modal/Modal';
 
 class ImageGallery extends Component {
   state = {
     galleryItems: null,
     error: null,
     status: 'idle',
+    showModal: false,
+    currentImg: null,
+    currentAlt: null
+  };
+
+  toggleModal = (img, alt) => {
+      this.setState(({ showModal }) => ({
+      showModal: !showModal,
+      currentImg: img,
+      currentAlt: alt
+    }));
+    return img
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -29,10 +41,8 @@ class ImageGallery extends Component {
           );
         })
         .then(({ hits }) => {
-          console.log("then hits:", hits)
-          
+
           if (hits.length === 0) {
-            console.log("then if hits:", hits)
             throw new Error(`No pictures found for ${this.props.itemTag}`);
           }
           this.setState({ galleryItems: hits, status: 'resolved' });
@@ -42,14 +52,14 @@ class ImageGallery extends Component {
   }
 
   render() {
-    const { galleryItems, error, status } = this.state;
+    const { galleryItems, error, status, showModal, currentImg, currentAlt } = this.state;
 
     if (status === 'idle') {
       return <p>Enter name</p>;
     }
 
     if (status === 'pending') {
-      return <Loader/>;
+      return <Loader />;
     }
 
     if (status === 'rejected') {
@@ -58,12 +68,17 @@ class ImageGallery extends Component {
 
     if (status === 'resolved') {
       return (
-        <ImageGalleryList>
-          {galleryItems.map(item => {
-            const { id, webformatURL, tags } = item;
-            return <ImageGalleryItem key={id} src={webformatURL} alt={tags} />;
-          })}
-        </ImageGalleryList>
+        <>
+          <ImageGalleryList>
+            {galleryItems.map(item => {
+              const { id, webformatURL, tags, largeImageURL } = item;
+              return (
+                <ImageGalleryItem key={id} src={webformatURL} alt={tags} largeImageURL={largeImageURL} toggleModal={this.toggleModal}/>
+              );
+            })}
+          </ImageGalleryList>
+          {showModal && <Modal currentImg={currentImg} currentAlt={currentAlt} toggleModal={()=>this.toggleModal(currentImg, currentAlt)}/>}
+        </>
       );
     }
   }

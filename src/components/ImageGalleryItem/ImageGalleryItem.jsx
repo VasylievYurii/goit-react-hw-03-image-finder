@@ -1,17 +1,16 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-// import { nanoid } from 'nanoid';
 import {
   ItemCardWrapper,
   ItemCard,
   ItemCardImg,
 } from './ImageGalleryItem.styled';
 
-const ImageGalleryItem = ({ src, alt }) => {
+const ImageGalleryItem = ({ src, alt, largeImageURL, toggleModal }) => {
   return (
     <ItemCardWrapper>
       <ItemCard href="#">
-        <ItemCardImg src={src} alt={alt} />
+        <ItemCardImg src={src} alt={alt} onClick={()=>toggleModal(largeImageURL, alt)}/>
       </ItemCard>
     </ItemCardWrapper>
   );

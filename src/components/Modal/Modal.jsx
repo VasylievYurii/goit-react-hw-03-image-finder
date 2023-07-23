@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-// import { nanoid } from 'nanoid';
-// import {} from './Modal.styled';
+import { ModalOverlay, ModalWindow, ModalImg } from './Modal.styled';
 
-{/* <div class="overlay">
-  <div class="modal">
-    <img src="" alt="" />
-  </div>
-</div> */}
+class Modal extends Component {
+
+componentDidMount(){}
+
+componentDidUpdate(){}
+
+  render(){
+    return (
+      <ModalOverlay onClick={()=>this.props.toggleModal()}>
+        <ModalWindow>
+          <ModalImg src={this.props.currentImg} alt={this.props.currentAlt}/>
+        </ModalWindow>
+      </ModalOverlay>
+    );
+  }
+  
+};
+export default Modal;

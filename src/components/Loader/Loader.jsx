@@ -1,6 +1,5 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-// import { nanoid } from 'nanoid';
 import {FakeGalleryList, FakeItemCardWrapper} from './Loader.styled';
 
 export const Loader = () => {
