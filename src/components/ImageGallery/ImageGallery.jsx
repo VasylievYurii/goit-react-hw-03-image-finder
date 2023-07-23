@@ -3,45 +3,70 @@ import React, { Component } from 'react';
 // import { nanoid } from 'nanoid';
 import { ImageGalleryList } from './ImageGallery.styled';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
-
-import SearchingApiServices from '../../services/pixabayApi';
-const searchingApiServices = new SearchingApiServices();
-// console.log('SearchingApiServices:', searchingApiServices.fetchPhotoCards());
+import { Loader } from 'components/Loader/Loader';
 
 class ImageGallery extends Component {
   state = {
     galleryItems: null,
-    loading: false,
-    error: null
+    error: null,
+    status: 'idle',
   };
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.itemTag !== this.props.itemTag) {
-      this.setState({ loading: true });
-      searchingApiServices
-        .fetchPhotoCards(this.props.itemTag)
-        .then(({ data: { hits } }) => this.setState({ galleryItems: hits }))
-        .catch(error => this.setState({error}))
-        .finally(() => this.setState({ loading: false }));
+      this.setState({ status: 'pending' });
+
+      fetch(
+        `https://pixabay.com/api/?q=${this.props.itemTag}&page=1&key=14851354-5f3abbeacded0434ca4aa137e&image_type=photo&orientation=horizontal&per_page=12`
+      )
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+
+          return Promise.reject(
+            new Error(`There are no ${this.props.itemTag} pictures`)
+          );
+        })
+        .then(({ hits }) => {
+          console.log("then hits:", hits)
+          
+          if (hits.length === 0) {
+            console.log("then if hits:", hits)
+            throw new Error(`No pictures found for ${this.props.itemTag}`);
+          }
+          this.setState({ galleryItems: hits, status: 'resolved' });
+        })
+        .catch(error => this.setState({ error, status: 'rejected' }));
     }
   }
 
   render() {
-    const { galleryItems, loading, error } = this.state;
-    const { itemTag } = this.props;
-console.log('error', error)
-    return (
-      <ImageGalleryList>
-        {error && <p>No pictures</p>}
-        {loading && <p>Downloading</p>}
-        {itemTag.length === 0 && <p>Enter name</p>}
-        {galleryItems &&
-          galleryItems.map(item => {
+    const { galleryItems, error, status } = this.state;
+
+    if (status === 'idle') {
+      return <p>Enter name</p>;
+    }
+
+    if (status === 'pending') {
+      return <Loader/>;
+    }
+
+    if (status === 'rejected') {
+      return <p>{error.message}</p>;
+    }
+
+    if (status === 'resolved') {
+      return (
+        <ImageGalleryList>
+          {galleryItems.map(item => {
             const { id, webformatURL, tags } = item;
             return <ImageGalleryItem key={id} src={webformatURL} alt={tags} />;
           })}
-      </ImageGalleryList>
-    );
+        </ImageGalleryList>
+      );
+    }
   }
 }
+
 export default ImageGallery;
