@@ -10,13 +10,12 @@ import Searchbar from 'components/Searchbar/Searchbar';
 export class App extends Component {
   state = {
     itemTag: [],
-  
   };
 
   handleSearchSubmit = itemTag => {
     this.setState({ itemTag });
   };
-  
+
   render() {
     return (
       <>
@@ -30,7 +29,7 @@ export class App extends Component {
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          theme="light"
+          theme="colored"
         />
         <Searchbar onSubmit={this.handleSearchSubmit} />
         <Section>

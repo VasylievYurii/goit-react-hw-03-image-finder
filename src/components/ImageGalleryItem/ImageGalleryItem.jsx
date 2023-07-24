@@ -7,12 +7,22 @@ import {
 } from './ImageGalleryItem.styled';
 
 const ImageGalleryItem = ({ src, alt, largeImageURL, toggleModal }) => {
+  const handleClick = e => {
+    e.preventDefault();
+    toggleModal(largeImageURL, alt);
+  };
+
   return (
     <ItemCardWrapper>
-      <ItemCard href="#">
-        <ItemCardImg src={src} alt={alt} onClick={()=>toggleModal(largeImageURL, alt)}/>
+      <ItemCard
+        href="#"
+        rel="noopener noreferrer nofollow"
+        onClick={handleClick}
+      >
+        <ItemCardImg src={src} alt={alt} />
       </ItemCard>
     </ItemCardWrapper>
   );
 };
+
 export default ImageGalleryItem;

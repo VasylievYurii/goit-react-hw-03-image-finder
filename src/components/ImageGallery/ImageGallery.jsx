@@ -4,6 +4,7 @@ import { ImageGalleryList } from './ImageGallery.styled';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import { Loader } from 'components/Loader/Loader';
 import Modal from 'components/Modal/Modal';
+import { Button } from '../Button/Button';
 
 import SearchingApiServices from 'services/pixabayApi';
 
@@ -94,9 +95,9 @@ class ImageGallery extends Component {
               );
             })}
           </ImageGalleryList>
-          <button type="button" onClick={this.getMorePictures}>
+          <Button type="button" onClick={this.getMorePictures}>
             Get more
-          </button>
+          </Button>
           {showModal && (
             <Modal
               currentImg={currentImg}
