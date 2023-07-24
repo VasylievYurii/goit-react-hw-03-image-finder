@@ -4,13 +4,34 @@ import { ModalOverlay, ModalWindow, ModalImg } from './Modal.styled';
 
 class Modal extends Component {
 
-componentDidMount(){}
+componentDidMount(){
+  console.log("componentDidMount:")
+  window.addEventListener('keydown', this.handleKeyDown)
+}
+
+componentWillUnmount(){
+console.log("componentWillUnmount:")
+window.removeEventListener('keydown', this.handleKeyDown)
+}
 
 componentDidUpdate(){}
 
+handleKeyDown = e => {
+  if(e.code === 'Escape'){
+    console.log('Need to close windows')
+    this.props.toggleModal();
+  }
+}
+
+handleBackdropClick = e => {
+if (e.currentTarget === e.target){
+  this.props.toggleModal();
+}
+}
+
   render(){
     return (
-      <ModalOverlay onClick={()=>this.props.toggleModal()}>
+      <ModalOverlay onClick={this.handleBackdropClick}>
         <ModalWindow>
           <ModalImg src={this.props.currentImg} alt={this.props.currentAlt}/>
         </ModalWindow>
@@ -20,3 +41,5 @@ componentDidUpdate(){}
   
 };
 export default Modal;
+
+// onClick={this.props.toggleModal}

@@ -21,7 +21,6 @@ class ImageGallery extends Component {
       currentImg: img,
       currentAlt: alt
     }));
-    return img
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -77,7 +76,7 @@ class ImageGallery extends Component {
               );
             })}
           </ImageGalleryList>
-          {showModal && <Modal currentImg={currentImg} currentAlt={currentAlt} toggleModal={()=>this.toggleModal(currentImg, currentAlt)}/>}
+          {showModal && <Modal currentImg={currentImg} currentAlt={currentAlt} toggleModal={this.toggleModal}/>}
         </>
       );
     }
