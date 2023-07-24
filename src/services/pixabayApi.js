@@ -15,10 +15,10 @@ export default class SearchingApiServices {
     this.page = 1;
   }
 
-  async fetchPhotoCards(searchQuery) {
+  async fetchPhotoCards() {
 
    const data = await fetch(
-      `${BASE_URL}?q=${searchQuery}&page=${this.page}&key=14851354-5f3abbeacded0434ca4aa137e&image_type=photo&orientation=horizontal&per_page=12`
+      `${BASE_URL}?q=${this.searchQuery}&page=${this.page}&key=14851354-5f3abbeacded0434ca4aa137e&image_type=photo&orientation=horizontal&per_page=12`
     )
       .then(response => {
         if (response.ok) {
@@ -26,7 +26,7 @@ export default class SearchingApiServices {
         }
 
         return Promise.reject(
-          new Error(`There are no ${searchQuery} pictures`)
+          new Error(`There are no ${this.searchQuery} pictures`)
         );
       })
 

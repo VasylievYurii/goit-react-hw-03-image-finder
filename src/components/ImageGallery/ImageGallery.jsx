@@ -5,6 +5,12 @@ import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import { Loader } from 'components/Loader/Loader';
 import Modal from 'components/Modal/Modal';
 
+import SearchingApiServices from 'services/pixabayApi';
+
+const searchingApiServices = new SearchingApiServices();
+
+
+
 class ImageGallery extends Component {
   state = {
     galleryItems: null,
@@ -26,21 +32,24 @@ class ImageGallery extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.itemTag !== this.props.itemTag) {
       this.setState({ status: 'pending' });
+      searchingApiServices.query = this.props.itemTag;
+      searchingApiServices.resetPage();
 
-      fetch(
-        `https://pixabay.com/api/?q=${this.props.itemTag}&page=1&key=14851354-5f3abbeacded0434ca4aa137e&image_type=photo&orientation=horizontal&per_page=12`
-      )
-        .then(response => {
-          if (response.ok) {
-            return response.json();
-          }
+      // fetch(
+      //   `https://pixabay.com/api/?q=${this.props.itemTag}&page=1&key=14851354-5f3abbeacded0434ca4aa137e&image_type=photo&orientation=horizontal&per_page=12`
+      // )
+      //   .then(response => {
+      //     if (response.ok) {
+      //       return response.json();
+      //     }
 
-          return Promise.reject(
-            new Error(`There are no ${this.props.itemTag} pictures`)
-          );
-        })
+      //     return Promise.reject(
+      //       new Error(`There are no ${this.props.itemTag} pictures`)
+      //     );
+      //   })
+      searchingApiServices.fetchPhotoCards()
         .then(({ hits }) => {
-
+console.log('hits', hits)
           if (hits.length === 0) {
             throw new Error(`No pictures found for ${this.props.itemTag}`);
           }
