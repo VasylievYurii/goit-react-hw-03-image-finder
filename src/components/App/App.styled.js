@@ -6,7 +6,7 @@ export const Section = styled.section`
   height: 100%;
   /* @media screen and (min-width: 768px) {  } */
   @media screen and (min-width: 1440px) {
-    height: 100vh;
+    /* height: 100vh; */
   }
 `;
 

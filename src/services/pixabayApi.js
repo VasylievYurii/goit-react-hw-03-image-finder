@@ -16,21 +16,19 @@ export default class SearchingApiServices {
   }
 
   async fetchPhotoCards() {
-
-   const data = await fetch(
+    const data = await fetch(
       `${BASE_URL}?q=${this.searchQuery}&page=${this.page}&key=14851354-5f3abbeacded0434ca4aa137e&image_type=photo&orientation=horizontal&per_page=12`
-    )
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
+    ).then(response => {
+      if (response.ok) {
+        return response.json();
+      }
 
-        return Promise.reject(
-          new Error(`There are no ${this.searchQuery} pictures`)
-        );
-      })
+      return Promise.reject(
+        new Error(`There are no ${this.searchQuery} pictures`)
+      );
+    });
 
-       this.incrementPage();
+    this.incrementPage();
     return data;
   }
 
@@ -49,7 +47,6 @@ export default class SearchingApiServices {
     this.searchQuery = newQuery;
   }
 }
-
 
 // export default class SearchingApiServices {
 //   constructor() {
