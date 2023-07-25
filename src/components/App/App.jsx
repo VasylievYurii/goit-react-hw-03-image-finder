@@ -6,10 +6,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Component } from 'react';
 import ImageGallery from 'components/ImageGallery/ImageGallery';
 import Searchbar from 'components/Searchbar/Searchbar';
+import { Preview } from 'components/Preview/Preview';
 
 export class App extends Component {
   state = {
     itemTag: null,
+    preview: true,
   };
 
   handleSearchSubmit = itemTag => {
@@ -17,7 +19,12 @@ export class App extends Component {
   };
 
   render() {
-    const { itemTag } = this.state;
+    const { itemTag, preview } = this.state;
+
+    if (preview) {
+      return <Preview />;
+    }
+
     return (
       <>
         <ToastContainer

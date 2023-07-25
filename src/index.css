@@ -3,6 +3,9 @@
 :root {
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   --animation-duration: 250ms;
+  --index: calc(1vw + 1vh);
+  --transition: 1.5s cubic-bezier(0.05, 0.5, 0, 1);
+  --logo-size: calc(1vw + 1vh);
 }
 
 body {

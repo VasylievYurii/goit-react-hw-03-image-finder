@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import PropTypes from 'prop-types';
-// import { nanoid } from 'nanoid';
 import { Header, Form, Input } from './Searchbar.styled';
 import { Button } from '../Button/Button';
 
