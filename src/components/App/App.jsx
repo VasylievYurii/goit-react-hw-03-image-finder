@@ -18,11 +18,16 @@ export class App extends Component {
     this.setState({ itemTag });
   };
 
+  startDiscover = () => {
+    this.setState({ preview: false });
+  };
+
   render() {
     const { itemTag, preview } = this.state;
 
     if (preview) {
-      return <Preview />;
+      // animateRain();
+      return <Preview startDiscover={this.startDiscover} />;
     }
 
     return (

@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Logo,
   Layers,
   LayersContainer,
   Layer1,
@@ -12,13 +11,15 @@ import {
   Layer7,
   Layer8,
   Layer9,
+  Layer10,
   HeroContent,
   HeroContentSpan,
   HeroContentP,
   ButtonStart,
 } from './Preview.styled';
+import RainCanvas from '../RainCanvas/RainCanvas';
 
-export const Preview = () => {
+export const Preview = ({ startDiscover }) => {
   document.addEventListener('mousemove', e => {
     Object.assign(document.documentElement, {
       style: `
@@ -27,11 +28,9 @@ export const Preview = () => {
             `,
     });
   });
-
+  //   animateRain();
   return (
     <>
-      <Logo />
-
       <Layers>
         <LayersContainer>
           <Layer1 />
@@ -49,13 +48,16 @@ export const Preview = () => {
               <HeroContentP>
                 Unlock Your Imagination with Pixabay and GoIT
               </HeroContentP>
-              <ButtonStart>Start Discovering</ButtonStart>
+              <ButtonStart onClick={startDiscover}>
+                Start Discovering
+              </ButtonStart>
             </HeroContent>
           </Layer7>
           <Layer8>
-            <canvas className="rain"></canvas>
+            <RainCanvas />
           </Layer8>
           <Layer9 />
+          <Layer10 />
         </LayersContainer>
       </Layers>
     </>
