@@ -9,7 +9,7 @@ import Searchbar from 'components/Searchbar/Searchbar';
 
 export class App extends Component {
   state = {
-    itemTag: [],
+    itemTag: null,
   };
 
   handleSearchSubmit = itemTag => {
@@ -17,6 +17,7 @@ export class App extends Component {
   };
 
   render() {
+    const { itemTag } = this.state;
     return (
       <>
         <ToastContainer
@@ -33,11 +34,9 @@ export class App extends Component {
         />
         <Searchbar onSubmit={this.handleSearchSubmit} />
         <Section>
+          {/* <Container>{itemTag && <ImageGallery itemTag={itemTag} />}</Container> */}
           <Container>
-            {this.state.loading && <h1>Downloading</h1>}
-            {this.state.itemTag && (
-              <ImageGallery itemTag={this.state.itemTag} />
-            )}
+            <ImageGallery itemTag={itemTag} />
           </Container>
         </Section>
       </>
