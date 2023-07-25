@@ -8,10 +8,14 @@ export const Section = styled.section`
   min-height: 100vh;
   background-image: radial-gradient(
     circle farthest-corner at 10% 20%,
+    #b1d8ef 0.1%,
+    #d0e3f3 94.2%
+  );
+  /* background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
     rgb(2, 122, 124) 0.1%,
     rgb(9, 52, 64) 94.2%
-  );
-  /* backdrop-filter: blur(80px); */
+  ); */
   /* @media screen and (min-width: 768px) {  } */
   @media screen and (min-width: 1440px) {
     /* height: 100vh; */

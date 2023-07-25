@@ -9,10 +9,16 @@ export const Header = styled.header`
   padding: 10px 0;
   background-image: radial-gradient(
     circle farthest-corner at 10% 20%,
+    rgb(160, 205, 238, 0.95) 0.1%,
+    rgb(188, 223, 236, 0.95) 94.2%
+  );
+
+  /* background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
     rgb(9, 52, 64, 0.95) 0.1%,
     rgb(2, 122, 124, 0.95) 94.2%
-  );
-  box-shadow: 4px 4px 40px 4px rgba(0, 0, 0, 0.5);
+  ); */
+  box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.5);
 
   z-index: 999;
 `;
