@@ -18,6 +18,7 @@ class ImageGallery extends Component {
     showModal: false,
     currentImg: null,
     currentAlt: null,
+    loadMore: false,
   };
 
   toggleModal = (img, alt) => {
@@ -48,6 +49,7 @@ class ImageGallery extends Component {
   }
 
   getMorePictures = () => {
+    this.setState({ loadMore: true });
     searchingApiServices
       .fetchPhotoCards()
       .then(({ hits }) => {
@@ -57,14 +59,22 @@ class ImageGallery extends Component {
         this.setState(prevState => ({
           galleryItems: [...prevState.galleryItems, ...hits],
           status: 'resolved',
+          loadMore: false,
         }));
       })
       .catch(error => this.setState({ error, status: 'rejected' }));
   };
 
   render() {
-    const { galleryItems, error, status, showModal, currentImg, currentAlt } =
-      this.state;
+    const {
+      galleryItems,
+      error,
+      status,
+      showModal,
+      currentImg,
+      currentAlt,
+      loadMore,
+    } = this.state;
 
     if (status === 'idle') {
       return <p>Enter name</p>;
@@ -95,7 +105,11 @@ class ImageGallery extends Component {
               );
             })}
           </ImageGalleryList>
-          <Button type="button" onClick={this.getMorePictures}>
+          <Button
+            type="button"
+            onClick={this.getMorePictures}
+            loader={loadMore}
+          >
             Get more
           </Button>
           {showModal && (

@@ -1,9 +1,17 @@
 import styled from '@emotion/styled';
 
 export const Section = styled.section`
+  padding-top: 80px;
+  padding-bottom: 20px;
   margin: 0 auto;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgb(2, 122, 124) 0.1%,
+    rgb(9, 52, 64) 94.2%
+  );
+  /* backdrop-filter: blur(80px); */
   /* @media screen and (min-width: 768px) {  } */
   @media screen and (min-width: 1440px) {
     /* height: 100vh; */
@@ -11,6 +19,9 @@ export const Section = styled.section`
 `;
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   max-width: 375px;
   padding-left: 20px;

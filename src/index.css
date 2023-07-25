@@ -13,11 +13,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: radial-gradient(
-    circle farthest-corner at 10% 20%,
-    rgb(2, 122, 124) 0.1%,
-    rgb(9, 52, 64) 94.2%
-  );
 }
 
 code {

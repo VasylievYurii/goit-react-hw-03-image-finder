@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import PropTypes from 'prop-types';
 // import { nanoid } from 'nanoid';
-// import {} from './Searchbar.styled';
+import { Header, Form, Input } from './Searchbar.styled';
 import { Button } from '../Button/Button';
 
 class Searchbar extends Component {
@@ -37,13 +37,13 @@ class Searchbar extends Component {
 
   render() {
     return (
-      <header>
-        <form onSubmit={this.handleSubmit}>
+      <Header>
+        <Form onSubmit={this.handleSubmit}>
           <Button type="submit">
             <span>Search</span>
           </Button>
 
-          <input
+          <Input
             type="text"
             autoComplete="off"
             autoFocus
@@ -51,8 +51,8 @@ class Searchbar extends Component {
             value={this.state.itemTag}
             onChange={this.handleItemTag}
           />
-        </form>
-      </header>
+        </Form>
+      </Header>
     );
   }
 }

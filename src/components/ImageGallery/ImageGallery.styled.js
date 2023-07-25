@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const ImageGalleryList = styled.ul`
-display: flex;
+  display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
@@ -9,5 +9,5 @@ display: flex;
   list-style: none;
   margin-left: auto;
   margin-right: auto;
-
-`
+  padding-bottom: 20px;
+`;
