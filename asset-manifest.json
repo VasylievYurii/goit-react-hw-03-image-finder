@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/goit-react-hw-03-image-finder/static/css/main.ff275f30.css",
-    "main.js": "/goit-react-hw-03-image-finder/static/js/main.0543e7d3.js",
+    "main.css": "/goit-react-hw-03-image-finder/static/css/main.114c414a.css",
+    "main.js": "/goit-react-hw-03-image-finder/static/js/main.11d2b5c7.js",
     "static/media/05_right_trees.png": "/goit-react-hw-03-image-finder/static/media/05_right_trees.5315ec676ef39c33392e.png",
     "static/media/06_left_trees.png": "/goit-react-hw-03-image-finder/static/media/06_left_trees.06746ecdce4c47e1bb58.png",
     "static/media/04_centertrees.png": "/goit-react-hw-03-image-finder/static/media/04_centertrees.638c1f4df705ce247d0d.png",
@@ -10,11 +10,11 @@
     "static/media/07_leaf.png": "/goit-react-hw-03-image-finder/static/media/07_leaf.18e202e11da58e3dce33.png",
     "static/media/01_backclouds.jpg": "/goit-react-hw-03-image-finder/static/media/01_backclouds.33385f530a4ea4030dfc.jpg",
     "index.html": "/goit-react-hw-03-image-finder/index.html",
-    "main.ff275f30.css.map": "/goit-react-hw-03-image-finder/static/css/main.ff275f30.css.map",
-    "main.0543e7d3.js.map": "/goit-react-hw-03-image-finder/static/js/main.0543e7d3.js.map"
+    "main.114c414a.css.map": "/goit-react-hw-03-image-finder/static/css/main.114c414a.css.map",
+    "main.11d2b5c7.js.map": "/goit-react-hw-03-image-finder/static/js/main.11d2b5c7.js.map"
   },
   "entrypoints": [
-    "static/css/main.ff275f30.css",
-    "static/js/main.0543e7d3.js"
+    "static/css/main.114c414a.css",
+    "static/js/main.11d2b5c7.js"
   ]
 }
