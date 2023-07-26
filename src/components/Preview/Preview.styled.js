@@ -75,19 +75,10 @@ export const Layer9 = styled(LayerItem)`
   background-image: url(${leaf});
   pointer-events: none;
 `;
-
 export const Layer10 = styled(LayerItem)`
-  --logo-size: calc(5vw + 5vh);
-  width: var(--logo-size);
-  height: var(--logo-size);
-  background-repeat: no-repeat;
-  position: absolute;
-  left: calc(50% - calc(var(--logo-size) / 2));
-  top: calc(var(--index) * 5.8);
-  z-index: 1;
-  transform: translateZ(250px) scale(0.9);
+  transform: translateZ(250px) scale(0.7);
   background-image: url(${logo});
-  background-size: contain;
+  pointer-events: none;
 `;
 
 export const HeroContent = styled.div`
