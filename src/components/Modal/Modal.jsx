@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { createPortal } from 'react-dom';
 import { ModalOverlay, ModalWindow, ModalImg } from './Modal.styled';
+
+const modalRoot = document.getElementById('modal');
 
 class Modal extends Component {
   componentDidMount() {
@@ -28,12 +31,13 @@ class Modal extends Component {
   };
 
   render() {
-    return (
+    return createPortal(
       <ModalOverlay onClick={this.handleBackdropClick}>
         <ModalWindow>
           <ModalImg src={this.props.currentImg} alt={this.props.currentAlt} />
         </ModalWindow>
-      </ModalOverlay>
+      </ModalOverlay>,
+      modalRoot
     );
   }
 }

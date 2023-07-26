@@ -8,6 +8,7 @@ export const ModalOverlay = styled.div`
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(8px);
+  z-index: 1;
 `;
 
 export const ModalWindow = styled.div`

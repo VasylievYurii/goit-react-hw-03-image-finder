@@ -13,7 +13,7 @@ export const Header = styled.header`
     rgb(188, 223, 236, 0.95) 94.2%
   );
   box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  z-index: 1;
 `;
 
 export const Input = styled.input`
