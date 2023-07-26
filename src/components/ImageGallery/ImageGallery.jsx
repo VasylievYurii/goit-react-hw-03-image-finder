@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-import { ImageGalleryList } from './ImageGallery.styled';
+import {
+  ImageGalleryList,
+  BsCardImageSvg,
+  ImCryingSvg,
+  ErrorMessage,
+} from './ImageGallery.styled';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import { Loader } from 'components/Loader/Loader';
 import Modal from 'components/Modal/Modal';
@@ -77,7 +82,7 @@ class ImageGallery extends Component {
     } = this.state;
 
     if (status === 'idle') {
-      return <p>Enter name</p>;
+      return <BsCardImageSvg />;
     }
 
     if (status === 'pending') {
@@ -85,7 +90,12 @@ class ImageGallery extends Component {
     }
 
     if (status === 'rejected') {
-      return <p>{error.message}</p>;
+      return (
+        <>
+          <ErrorMessage>{error.message}</ErrorMessage>
+          <ImCryingSvg />
+        </>
+      );
     }
 
     if (status === 'resolved') {

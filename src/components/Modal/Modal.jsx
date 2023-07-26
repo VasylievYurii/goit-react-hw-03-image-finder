@@ -3,43 +3,43 @@ import React, { Component } from 'react';
 import { ModalOverlay, ModalWindow, ModalImg } from './Modal.styled';
 
 class Modal extends Component {
-
-componentDidMount(){
-  console.log("componentDidMount:")
-  window.addEventListener('keydown', this.handleKeyDown)
-}
-
-componentWillUnmount(){
-console.log("componentWillUnmount:")
-window.removeEventListener('keydown', this.handleKeyDown)
-}
-
-componentDidUpdate(){}
-
-handleKeyDown = e => {
-  if(e.code === 'Escape'){
-    console.log('Need to close windows')
-    this.props.toggleModal();
+  componentDidMount() {
+    console.log('componentDidMount:');
+    window.addEventListener('keydown', this.handleKeyDown);
+    document.body.style.overflow = 'hidden';
   }
-}
 
-handleBackdropClick = e => {
-if (e.currentTarget === e.target){
-  this.props.toggleModal();
-}
-}
+  componentWillUnmount() {
+    console.log('componentWillUnmount:');
+    window.removeEventListener('keydown', this.handleKeyDown);
+    document.body.style.overflow = 'auto';
+  }
 
-  render(){
+  componentDidUpdate() {}
+
+  handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      console.log('Need to close windows');
+      this.props.toggleModal();
+    }
+  };
+
+  handleBackdropClick = e => {
+    if (e.currentTarget === e.target) {
+      this.props.toggleModal();
+    }
+  };
+
+  render() {
     return (
       <ModalOverlay onClick={this.handleBackdropClick}>
         <ModalWindow>
-          <ModalImg src={this.props.currentImg} alt={this.props.currentAlt}/>
+          <ModalImg src={this.props.currentImg} alt={this.props.currentAlt} />
         </ModalWindow>
       </ModalOverlay>
     );
   }
-  
-};
+}
 export default Modal;
 
 // onClick={this.props.toggleModal}

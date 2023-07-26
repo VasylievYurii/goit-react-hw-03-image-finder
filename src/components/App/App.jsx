@@ -7,6 +7,7 @@ import { Component } from 'react';
 import ImageGallery from 'components/ImageGallery/ImageGallery';
 import Searchbar from 'components/Searchbar/Searchbar';
 import { Preview } from 'components/Preview/Preview';
+import { CSSTransition } from 'react-transition-group';
 
 export class App extends Component {
   state = {
@@ -25,9 +26,22 @@ export class App extends Component {
   render() {
     const { itemTag, preview } = this.state;
 
+    // if (preview) {
+    //   return <Preview startDiscover={this.startDiscover} />;
+    // }
+
     if (preview) {
-      // animateRain();
-      return <Preview startDiscover={this.startDiscover} />;
+      return (
+        <CSSTransition
+          in={preview}
+          classNames="fade"
+          timeout={3000} // Тривалість анімації у мілісекундах
+          unmountOnExit
+          mountOnEnter
+        >
+          <Preview startDiscover={this.startDiscover} />
+        </CSSTransition>
+      );
     }
 
     return (
