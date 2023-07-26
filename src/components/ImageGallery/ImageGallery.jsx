@@ -9,6 +9,7 @@ import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import { Loader } from 'components/Loader/Loader';
 import Modal from 'components/Modal/Modal';
 import { Button } from '../Button/Button';
+import { toast } from 'react-toastify';
 
 import SearchingApiServices from 'services/pixabayApi';
 
@@ -22,7 +23,7 @@ class ImageGallery extends Component {
     showModal: false,
     currentImg: null,
     currentAlt: null,
-    loadMore: false,
+    isButtonActive: true,
   };
 
   toggleModal = (img, alt) => {
@@ -35,7 +36,7 @@ class ImageGallery extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.itemTag !== this.props.itemTag) {
-      this.setState({ status: 'pending' });
+      this.setState({ status: 'pending', isButtonActive: true });
       searchingApiServices.query = this.props.itemTag;
       searchingApiServices.resetPage();
 
@@ -44,6 +45,9 @@ class ImageGallery extends Component {
         .then(({ hits }) => {
           if (hits.length === 0) {
             throw new Error(`No pictures found for ${this.props.itemTag}`);
+          }
+          if (hits.length < 12) {
+            this.setState({ isButtonActive: false });
           }
           this.setState({ galleryItems: hits, status: 'resolved' });
         })
@@ -57,12 +61,27 @@ class ImageGallery extends Component {
       .fetchPhotoCards()
       .then(({ hits }) => {
         if (hits.length === 0) {
-          throw new Error(`No pictures found for ${this.props.itemTag}`);
+          toast.warn(
+            `Sorry! There are no more "${this.props.itemTag}" pictures!`,
+            {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'colored',
+            }
+          );
+          this.setState({ loadMore: false, isButtonActive: false });
+          return;
         }
         this.setState(prevState => ({
           galleryItems: [...prevState.galleryItems, ...hits],
           status: 'resolved',
           loadMore: false,
+          isButtonActive: true,
         }));
       })
       .catch(error => this.setState({ error, status: 'rejected' }));
@@ -77,6 +96,7 @@ class ImageGallery extends Component {
       currentImg,
       currentAlt,
       loadMore,
+      isButtonActive,
     } = this.state;
 
     if (status === 'idle') {
@@ -113,13 +133,17 @@ class ImageGallery extends Component {
               );
             })}
           </ImageGalleryList>
-          <Button
-            type="button"
-            onClick={this.getMorePictures}
-            loader={loadMore}
-          >
-            Get more
-          </Button>
+          {isButtonActive && (
+            <Button
+              type="button"
+              onClick={this.getMorePictures}
+              loader={loadMore}
+              disabled={!isButtonActive}
+            >
+              Get more
+            </Button>
+          )}
+
           {showModal && (
             <Modal
               currentImg={currentImg}
