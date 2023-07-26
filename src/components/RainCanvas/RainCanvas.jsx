@@ -73,7 +73,6 @@ function RainCanvas() {
     animateRain();
 
     const handleResize = () => {
-      // Clear the rainArray and update canvas dimensions on resize
       rainArrayRef.current = [];
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;

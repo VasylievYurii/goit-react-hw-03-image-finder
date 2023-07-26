@@ -10,14 +10,13 @@ export const ItemCardWrapper = styled.li`
   border-radius: 0.375em;
   transition: transform var(--animation-duration) var(--timing-function);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-  /* backdrop-filter: blur(40px); */
 
   &:hover {
     transform: scale(1.03);
   }
 `;
 export const ItemCard = styled.a`
- display: block;
+  display: block;
   text-decoration: none;
   width: 300px;
   height: 200px;
@@ -25,14 +24,11 @@ export const ItemCard = styled.a`
   &:hover {
     cursor: zoom-in;
   }
-
 `;
 export const ItemCardImg = styled.img`
   width: 100%;
   height: 200px;
   border-radius: 0.375em;
-  /* border-top-left-radius: 0.375em; */
-  /* border-top-right-radius: 0.375em; */
   object-fit: cover;
   cursor: pointer;
 `;

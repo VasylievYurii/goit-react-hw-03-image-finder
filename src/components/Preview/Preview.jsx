@@ -28,7 +28,7 @@ export const Preview = ({ startDiscover }) => {
             `,
     });
   });
-  //   animateRain();
+
   return (
     <>
       <Layers>

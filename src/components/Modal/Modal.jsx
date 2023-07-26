@@ -41,5 +41,3 @@ class Modal extends Component {
   }
 }
 export default Modal;
-
-// onClick={this.props.toggleModal}

@@ -43,7 +43,6 @@ class ImageGallery extends Component {
       searchingApiServices
         .fetchPhotoCards()
         .then(({ hits }) => {
-          console.log('hits', hits);
           if (hits.length === 0) {
             throw new Error(`No pictures found for ${this.props.itemTag}`);
           }
