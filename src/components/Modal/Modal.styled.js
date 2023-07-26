@@ -26,8 +26,6 @@ export const ModalWindow = styled.div`
 export const ModalImg = styled.img`
   width: 100%;
   filter: none;
-  @media screen and (min-width: 400px) {
-  }
   @media screen and (min-width: 768px) {
     width: auto;
     height: 60vh;
