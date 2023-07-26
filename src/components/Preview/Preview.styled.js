@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { css, keyframes } from '@emotion/react';
 import backClouds from '../../images/01_backclouds.jpg';
 import temple from '../../images/02_temple.png';
 import fog from '../../images/03_fog.png';
@@ -7,6 +8,15 @@ import treesRight from '../../images/05_right_trees.png';
 import treesLeft from '../../images/06_left_trees.png';
 import leaf from '../../images/07_leaf.png';
 import logo from '../../images/logo.png';
+
+const moveRightLeft = keyframes`
+  0% {
+    transform: translateX(-70%);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+`;
 
 export const Layers = styled.section`
   perspective: 1000px;
@@ -38,13 +48,16 @@ export const Layer1 = styled(LayerItem)`
 `;
 
 export const Layer2 = styled(LayerItem)`
-  transform: translateZ(20px) scale(0.88);
+  transform: translateZ(0px) scale(1);
   background-image: url(${temple});
 `;
 
 export const Layer3 = styled(LayerItem)`
-  transform: translateZ(120px) scale(0.88);
+  transform: translateZ(120px) scale(1);
   background-image: url(${fog});
+  animation: ${css`
+    ${moveRightLeft} 30s linear infinite
+  `};
 `;
 
 export const Layer4 = styled(LayerItem)`
