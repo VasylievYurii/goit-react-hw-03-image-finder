@@ -6,20 +6,17 @@ const modalRoot = document.getElementById('modal');
 
 class Modal extends Component {
   componentDidMount() {
-    console.log('componentDidMount:');
     window.addEventListener('keydown', this.handleKeyDown);
     document.body.style.overflow = 'hidden';
   }
 
   componentWillUnmount() {
-    console.log('componentWillUnmount:');
     window.removeEventListener('keydown', this.handleKeyDown);
     document.body.style.overflow = 'auto';
   }
 
   handleKeyDown = e => {
     if (e.code === 'Escape') {
-      console.log('Need to close windows');
       this.props.toggleModal();
     }
   };
