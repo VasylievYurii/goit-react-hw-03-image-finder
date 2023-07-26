@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Layers,
   LayersContainer,
@@ -62,4 +63,8 @@ export const Preview = ({ startDiscover }) => {
       </Layers>
     </>
   );
+};
+
+Preview.propTypes = {
+  startDiscover: PropTypes.func.isRequired,
 };

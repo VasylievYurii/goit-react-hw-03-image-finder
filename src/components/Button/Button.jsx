@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { ButtonStyle } from './Button.styled';
 import { Grid } from 'react-loader-spinner';
 
@@ -22,4 +22,13 @@ export const Button = ({ loader, children, ...props }) => {
   } else {
     return <ButtonStyle {...props}>{children}</ButtonStyle>;
   }
+};
+
+Button.propTypes = {
+  loader: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+};
+
+Button.defaultProps = {
+  loader: false,
 };

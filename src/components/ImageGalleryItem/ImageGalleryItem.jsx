@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import {
   ItemCardWrapper,
   ItemCard,
@@ -26,3 +26,10 @@ const ImageGalleryItem = ({ src, alt, largeImageURL, toggleModal }) => {
 };
 
 export default ImageGalleryItem;
+
+ImageGalleryItem.propTypes = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string,
+  largeImageURL: PropTypes.string.isRequired,
+  toggleModal: PropTypes.func.isRequired,
+};

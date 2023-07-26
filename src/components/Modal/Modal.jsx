@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { ModalOverlay, ModalWindow, ModalImg } from './Modal.styled';
 
 class Modal extends Component {
@@ -14,8 +13,6 @@ class Modal extends Component {
     window.removeEventListener('keydown', this.handleKeyDown);
     document.body.style.overflow = 'auto';
   }
-
-  componentDidUpdate() {}
 
   handleKeyDown = e => {
     if (e.code === 'Escape') {
@@ -40,4 +37,5 @@ class Modal extends Component {
     );
   }
 }
+
 export default Modal;
